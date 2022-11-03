@@ -19,9 +19,9 @@ class MovieDetails : AppCompatActivity() {
         movie_name = findViewById(R.id.movie_name)
 
         title = intent.getStringExtra("title").toString()
-        imageId = intent.getStringExtra("imageId")!!.toInt()
+      //  imageId = intent.getStringExtra("imageId")!!.toInt()
         movie_name.text = title
-        movie_name.text = imageId.toString()
+       //git movie_name.text = imageId.toString()
 
       //  imageId.let { image_icon.setImageResource(it) }
 

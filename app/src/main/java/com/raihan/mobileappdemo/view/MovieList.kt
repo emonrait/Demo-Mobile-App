@@ -2,25 +2,36 @@ package com.raihan.mobileappdemo.view
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.raihan.mobileappdemo.R
 import com.raihan.mobileappdemo.adaptar.MovieListAdaptar
 import com.raihan.mobileappdemo.model.Movie
+import com.raihan.mobileappdemo.room.RoomViewModel
 import java.util.ArrayList
 
 class MovieList : AppCompatActivity() {
+    private lateinit var roomViewModel: RoomViewModel
     private lateinit var movieList: ArrayList<Movie>
     private lateinit var adapter: MovieListAdaptar
     private lateinit var movieRecyler: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_list)
-        movieRecyler = findViewById(R.id.movieRecyler)
 
+        roomViewModel = ViewModelProvider(this).get(RoomViewModel::class.java)
+
+        movieRecyler = findViewById(R.id.movieRecyler)
         movieList = ArrayList<Movie>()
+
+        roomViewModel.readSingle("SM").observe(this) { optionInfo ->
+
+//            Log.d("value-->", optionInfo.watchFlag)
+        }
 
         movieList.add(
             Movie(
@@ -31,9 +42,10 @@ class MovieList : AppCompatActivity() {
                 "7.8",
                 "2h 30 min",
                 "Action, Sci-Fi",
-                ": 3 September 2020",
+                "3 September 2020",
                 "https://www.youtube.com/watch?v=LdOM0x0XDMo",
-                R.drawable.tenet
+                R.drawable.tenet,
+                "TE"
             )
         )
 
@@ -47,7 +59,8 @@ class MovieList : AppCompatActivity() {
                 " Action, Animation, Adventure",
                 "14 December 2018",
                 "https://www.youtube.com/watch?v=tg52up16eq0",
-                R.drawable.spiderman
+                R.drawable.spiderman,
+                "SM"
             )
         )
         movieList.add(
@@ -60,7 +73,8 @@ class MovieList : AppCompatActivity() {
                 " Action, Animation, Adventure",
                 "14 December 2018",
                 "https://www.youtube.com/watch?v=tg52up16eq0",
-                R.drawable.knives
+                R.drawable.knives,
+                "KO"
             )
         )
         movieList.add(
@@ -73,7 +87,8 @@ class MovieList : AppCompatActivity() {
                 "Action, Adventure, Comedy",
                 "1 August 2014",
                 "https://www.youtube.com/watch?v=d96cjJhvlMA",
-                R.drawable.guardians
+                R.drawable.guardians,
+                "GG"
             )
         )
         movieList.add(
@@ -87,11 +102,12 @@ class MovieList : AppCompatActivity() {
                 "Action, Adventure, Sci-Fi",
                 "1 May 2015",
                 "https://www.youtube.com/watch?v=tmeOjFno6Do",
-                R.drawable.avengers
+                R.drawable.avengers,
+                "AU"
             )
         )
         adapter = MovieListAdaptar(
-            movieList,
+            movieList, this,this,
             object : MovieListAdaptar.OnItemClickListener {
                 override fun onItemClick(item: Movie?) {
                     // Toast.makeText(this@MovieList, item!!.title, Toast.LENGTH_SHORT).show()
@@ -102,7 +118,8 @@ class MovieList : AppCompatActivity() {
                     intent.putExtra("trailerLink", item.trailerLink)
                     intent.putExtra("genre", item.genre)
                     intent.putExtra("releasedDate", item.releasedDate)
-                    intent.putExtra("imageId", item.imageId)
+                    intent.putExtra("movieId", item.movieId)
+                    intent.putExtra("duration", item.duration)
                     startActivity(intent)
                 }
             })

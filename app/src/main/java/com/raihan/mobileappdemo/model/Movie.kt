@@ -16,5 +16,7 @@ data class Movie(
 
     var trailerLink: String?,
 
-    var imageId: Int?
+    var imageId: Int?,
+
+    var movieId: String?
 )

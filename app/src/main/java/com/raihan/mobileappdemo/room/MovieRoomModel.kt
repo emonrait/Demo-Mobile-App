@@ -11,7 +11,7 @@ import kotlinx.android.parcel.Parcelize
 @Entity(
     tableName = "room_movie", indices = arrayOf(
         Index(
-            value = ["sl", "imageId"],
+            value = ["sl", "movieId"],
             unique = true
         )
     )
@@ -22,8 +22,8 @@ class MovieRoomModel(
     @ColumnInfo(name = "sl")
     var sl: Int = 0,
 
-    @ColumnInfo(name = "imageId")
-    var id: String = "",
+    @ColumnInfo(name = "movieId")
+    var movieId: String = "",
 
     @ColumnInfo(name = "title")
     var title: String = "",

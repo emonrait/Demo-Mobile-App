@@ -15,11 +15,11 @@ interface RoomDao {
     @Query("DELETE FROM room_movie")
     suspend fun deleteallData()
 
-    @Query("SELECT * FROM room_movie WHERE imageId= :imageId")
-    fun readList(imageId: String): LiveData<List<MovieRoomModel>>
+    @Query("SELECT * FROM room_movie WHERE movieId= :movieId")
+    fun readList(movieId: String): LiveData<List<MovieRoomModel>>
 
-    @Query("SELECT * FROM room_movie WHERE imageId= :imageId")
-    fun readSingle(imageId: String): LiveData<MovieRoomModel>
+    @Query("SELECT * FROM room_movie WHERE movieId= :movieId")
+    fun readSingle(movieId: String): LiveData<MovieRoomModel>
 
     @Update
     suspend fun updateData(vararg movieRoomModel: MovieRoomModel)

@@ -9,9 +9,7 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin_5"
-        android:elevation="@dimen/margin_10"
-        app:cardElevation="@dimen/margin_10">
+        android:layout_margin="@dimen/margin_2">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -63,9 +61,9 @@
                     android:layout_marginLeft="@dimen/margin_10"
                     android:layout_marginTop="@dimen/margin_10"
                     android:layout_marginRight="@dimen/margin_10"
+                    android:visibility="gone"
                     android:gravity="center_vertical"
                     android:padding="2dp"
-                    android:scrollHorizontally="true"
                     android:text="@string/on_my_watchlist" />
             </LinearLayout>
 

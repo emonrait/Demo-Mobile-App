@@ -30,17 +30,13 @@ class RoomViewModel(
             repository.insertData(movieRoomModel)
         }
 
-        fun updateData(movieRoomModel: MovieRoomModel) {
-            GlobalScope.launch {
-                repository.updateData(movieRoomModel)
+    }
 
-            }
+    fun updateData(movieRoomModel: MovieRoomModel) {
+        GlobalScope.launch {
+            repository.updateData(movieRoomModel)
+
         }
-
-        /* viewModelScope.launch(Dispatchers.IO) {
-             repository.insertData(movieRoomModel)
-
-         }*/
     }
 
     /*

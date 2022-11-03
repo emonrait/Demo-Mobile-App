@@ -1,24 +1,33 @@
 package com.raihan.mobileappdemo.adaptar
 
+import android.app.Activity
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.raihan.mobileappdemo.R
 import com.raihan.mobileappdemo.model.Movie
+import com.raihan.mobileappdemo.room.RoomViewModel
+import java.lang.Exception
 import java.util.ArrayList
 
 class MovieListAdaptar(
     private var movieList: ArrayList<Movie>,
+    activity: ViewModelStoreOwner,
+    newcontext: LifecycleOwner,
     listenerInit: OnItemClickListener
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
-
+    private var roomViewModel: RoomViewModel
     var requestFilterList = ArrayList<Movie>()
     lateinit var mcontext: Context
+    var newcontext1: LifecycleOwner
 
     var listener: OnItemClickListener
 
@@ -28,6 +37,8 @@ class MovieListAdaptar(
     init {
         requestFilterList = movieList
         listener = listenerInit
+        roomViewModel = ViewModelProvider(activity).get(RoomViewModel::class.java)
+        newcontext1 = newcontext
 
 
     }
@@ -50,11 +61,25 @@ class MovieListAdaptar(
         val currentItem = requestFilterList[position]
         val menu_name: TextView? = holder.itemView.findViewById(R.id.menu_name)
         val menu_desc: TextView? = holder.itemView.findViewById(R.id.menu_desc)
+        val menu_watch: TextView? = holder.itemView.findViewById(R.id.menu_watch)
         val menu_icon: ImageView? = holder.itemView.findViewById(R.id.menu_icon)
 
         menu_name!!.text = currentItem.title
         menu_desc!!.text = currentItem.duration + " - " + currentItem.genre
         currentItem.imageId?.let { menu_icon?.setImageResource(it) }
+
+        roomViewModel.readSingle(currentItem.movieId.toString().trim())
+            .observe(newcontext1) { optionInfo ->
+
+                try {
+                    if (optionInfo.watchFlag.equals("Y")) {
+                        menu_watch!!.visibility = View.VISIBLE
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
+
+            }
 
 
         menu_name.setOnClickListener {
@@ -66,8 +91,8 @@ class MovieListAdaptar(
 
     override fun getItemCount(): Int {
         return requestFilterList.size
-       // notifyDataSetChanged()
-       // Log.e("requestFilterList--->", requestFilterList.size.toString())
+        // notifyDataSetChanged()
+        // Log.e("requestFilterList--->", requestFilterList.size.toString())
     }
 
 

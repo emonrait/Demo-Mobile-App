@@ -13,16 +13,13 @@ import java.util.ArrayList
 
 class MovieListAdaptar(
     private var movieList: ArrayList<Movie>,
-    context: Context,
     listenerInit: OnItemClickListener
 ) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>(), Filterable {
-    // private var atmlist = emptyList<AtmRoomModel>()
 
     var requestFilterList = ArrayList<Movie>()
     lateinit var mcontext: Context
 
-    //lateinit var dialog: Dialog
     var listener: OnItemClickListener
 
 
@@ -69,8 +66,8 @@ class MovieListAdaptar(
 
     override fun getItemCount(): Int {
         return requestFilterList.size
-        notifyDataSetChanged()
-        Log.e("atmlistValue--->", requestFilterList.size.toString())
+       // notifyDataSetChanged()
+       // Log.e("requestFilterList--->", requestFilterList.size.toString())
     }
 
 

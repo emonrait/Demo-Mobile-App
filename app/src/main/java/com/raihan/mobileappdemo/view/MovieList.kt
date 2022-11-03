@@ -42,7 +42,7 @@ class MovieList : AppCompatActivity() {
                 "Spider-Man: Into the Spider-Verse",
                 "Teen Miles Morales becomes the Spider-Man of his universe, and must join with five " +
                         "spider-powered individuals from other dimensions to stop a threat for all realities.",
-                ": 8.4",
+                "8.4",
                 "1h 57min",
                 " Action, Animation, Adventure",
                 "14 December 2018",
@@ -55,7 +55,7 @@ class MovieList : AppCompatActivity() {
                 "Knives Out",
                 "Teen Miles Morales becomes the Spider-Man of his universe, and must join with five " +
                         "spider-powered individuals from other dimensions to stop a threat for all realities.",
-                ": 8.4",
+                "8.4",
                 "1h 57min",
                 " Action, Animation, Adventure",
                 "14 December 2018",
@@ -92,7 +92,6 @@ class MovieList : AppCompatActivity() {
         )
         adapter = MovieListAdaptar(
             movieList,
-            applicationContext,
             object : MovieListAdaptar.OnItemClickListener {
                 override fun onItemClick(item: Movie?) {
                     // Toast.makeText(this@MovieList, item!!.title, Toast.LENGTH_SHORT).show()

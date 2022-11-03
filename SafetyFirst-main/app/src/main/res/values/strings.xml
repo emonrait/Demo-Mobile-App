@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Safety First</string>
+    <string name="shake_or_click_on_below_button_for_help">Shake or click on below button for Help</string>
+    <string name="unsafe">Unsafe</string>
+    <string name="test">Click Below</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
+    <string name="example_gmail_com" />
+    <string name="add_personal_information">Add Personal Information</string>
+    <string name="add_emergency_information">Add Emergency Information</string>
+    <string name="name">Name</string>
+    <string name="mobile">Mobile</string>
+    <string name="email_address">Email Address</string>
+    <string name="submit">Submit</string>
+    <string name="safe">Safe</string>
+    <string name="add_police_information">Add Police Information</string>
+    <string name="id">ID</string>
+    <string name="email_product">Select Person ID</string>
+    <string name="view_list">View List</string>
+    <string name="info_type">Info Type</string>
+    <string name="info_view_list">View List</string>
+    <string name="info_flag">Info Flag</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="alert_message">Do you want to call the police?</string>
+</resources>

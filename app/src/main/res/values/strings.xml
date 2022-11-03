@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Mobile App Demo</string>
+    <string name="menu_name">Menu Name</string>
+    <string name="on_my_watchlist">ON MY WATCHLIST</string>
+</resources>

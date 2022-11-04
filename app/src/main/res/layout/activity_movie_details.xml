@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".view.MovieDetails">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple_500"
+        app:theme="@style/ToolbarColoredBackArrow"
+        app:titleTextColor="@color/white" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -99,9 +107,9 @@
                 android:padding="@dimen/padding_5"
                 android:text="REMOVE FROM WATCHLIST"
                 android:textAllCaps="false"
-                android:visibility="gone"
                 android:textColor="@color/black"
-                android:textSize="14sp" />
+                android:textSize="14sp"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/btn_tailar"

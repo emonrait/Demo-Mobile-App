@@ -2,23 +2,27 @@ package com.raihan.mobileappdemo.view
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
+import com.raihan.mobileappdemo.MainActivity
 import com.raihan.mobileappdemo.R
 import com.raihan.mobileappdemo.adaptar.MovieListAdaptar
 import com.raihan.mobileappdemo.model.Movie
 import com.raihan.mobileappdemo.room.RoomViewModel
-import java.util.ArrayList
+import java.util.*
 
 class MovieList : AppCompatActivity() {
     private lateinit var roomViewModel: RoomViewModel
     private lateinit var movieList: ArrayList<Movie>
     private lateinit var adapter: MovieListAdaptar
     private lateinit var movieRecyler: RecyclerView
+    private lateinit var toolbar: Toolbar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_list)
@@ -26,11 +30,23 @@ class MovieList : AppCompatActivity() {
         roomViewModel = ViewModelProvider(this).get(RoomViewModel::class.java)
 
         movieRecyler = findViewById(R.id.movieRecyler)
+        toolbar = findViewById(R.id.toolbar)
         movieList = ArrayList<Movie>()
-
+        setSupportActionBar(toolbar)
+        Objects.requireNonNull(supportActionBar)?.setHomeButtonEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.title = "Movie List"
         roomViewModel.readSingle("SM").observe(this) { optionInfo ->
 
 //            Log.d("value-->", optionInfo.watchFlag)
+        }
+
+        toolbar.setNavigationOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
         }
 
         movieList.add(
@@ -107,7 +123,7 @@ class MovieList : AppCompatActivity() {
             )
         )
         adapter = MovieListAdaptar(
-            movieList, this,this,
+            movieList, this, this,
             object : MovieListAdaptar.OnItemClickListener {
                 override fun onItemClick(item: Movie?) {
                     // Toast.makeText(this@MovieList, item!!.title, Toast.LENGTH_SHORT).show()
@@ -127,5 +143,26 @@ class MovieList : AppCompatActivity() {
         movieRecyler.adapter = adapter
         movieRecyler.setHasFixedSize(true)
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater = menuInflater
+        inflater.inflate(R.menu.main_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.sort -> {
+                Collections.sort(movieList,
+                    Comparator<Movie> { lhs, rhs -> lhs.title!!.compareTo(rhs.title.toString()) })
+
+                adapter.notifyDataSetChanged()
+
+                Toast.makeText(this, "test", Toast.LENGTH_SHORT).show()
+
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

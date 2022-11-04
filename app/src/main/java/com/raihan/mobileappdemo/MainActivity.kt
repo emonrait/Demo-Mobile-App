@@ -9,7 +9,9 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.raihan.mobileappdemo.adaptar.MenuAdapter
 import com.raihan.mobileappdemo.model.Menu
+import com.raihan.mobileappdemo.view.AboutMe
 import com.raihan.mobileappdemo.view.MovieList
+import com.raihan.mobileappdemo.view.WorkList
 import java.util.ArrayList
 
 class MainActivity : AppCompatActivity() {
@@ -22,9 +24,9 @@ class MainActivity : AppCompatActivity() {
         menuGridView = findViewById(R.id.menuGridView)
         menuList = ArrayList<Menu>()
 
-        menuList.add(Menu("ML", "Movie List", R.drawable.ic_launcher_background))
-        menuList.add(Menu("SW", "Some of My Work", R.drawable.ic_launcher_background))
-        menuList.add(Menu("AM", "About Me", R.drawable.ic_launcher_background))
+        menuList.add(Menu("ML", "Movie List", R.drawable.playlist))
+        menuList.add(Menu("SW", "Some of My Work", R.drawable.playlist))
+        menuList.add(Menu("AM", "About Me", R.drawable.ic_programmer))
 
         adapter = MenuAdapter(this, menuList)
         menuGridView.adapter = adapter
@@ -42,11 +44,11 @@ class MainActivity : AppCompatActivity() {
                         startActivity(intent)
                     }
                     "SW" == menu_soft_code.text.toString() -> {
-                        val intent = Intent(this, MovieList::class.java)
+                        val intent = Intent(this, WorkList::class.java)
                         startActivity(intent)
                     }
                     "AM" == menu_soft_code.text.toString() -> {
-                        val intent = Intent(this, MovieList::class.java)
+                        val intent = Intent(this, AboutMe::class.java)
                         startActivity(intent)
                     }
 

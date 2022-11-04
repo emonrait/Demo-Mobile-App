@@ -16,7 +16,7 @@
             android:layout_width="@dimen/header_image_height_base"
             android:layout_height="@dimen/header_image_height_base"
             android:layout_gravity="center"
-            android:layout_marginTop="@dimen/margin_10"
+            android:layout_marginTop="50dp"
             app:cardCornerRadius="@dimen/margin_10">
 
             <ImageView
@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="fitXY"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/user" />
         </androidx.cardview.widget.CardView>
 
 

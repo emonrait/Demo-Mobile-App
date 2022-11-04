@@ -7,7 +7,7 @@
     <dimen name="welcome_gridview_hs_base">10dp</dimen>
     <dimen name="welcome_gridview_padding_base">10dp</dimen>
     <dimen name="welcome_gridview_vs_base">10dp</dimen>
-    <dimen name="header_height_base">120dp</dimen>
+    <dimen name="header_height_base">180dp</dimen>
     <dimen name="header_image_height_base">100dp</dimen>
     <dimen name="padding_5">5dp</dimen>
     <dimen name="row_welcome_menu_tv2_size_base">12sp</dimen>

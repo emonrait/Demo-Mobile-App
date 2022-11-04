@@ -9,14 +9,18 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.ViewModelProvider
+import com.raihan.mobileappdemo.MainActivity
 import com.raihan.mobileappdemo.R
 import com.raihan.mobileappdemo.room.MovieRoomModel
 import com.raihan.mobileappdemo.room.RoomViewModel
 import java.lang.Exception
+import java.util.*
 
 class MovieDetails : AppCompatActivity() {
     private lateinit var roomViewModel: RoomViewModel
+    private lateinit var toolbar: Toolbar
     private lateinit var image_icon: ImageView
     private lateinit var movie_name: TextView
     private lateinit var movie_rating: TextView
@@ -41,6 +45,7 @@ class MovieDetails : AppCompatActivity() {
 
         roomViewModel = ViewModelProvider(this).get(RoomViewModel::class.java)
 
+        toolbar = findViewById(R.id.toolbar)
         image_icon = findViewById(R.id.image_icon)
         movie_name = findViewById(R.id.movie_name)
         movie_rating = findViewById(R.id.movie_rating)
@@ -50,6 +55,19 @@ class MovieDetails : AppCompatActivity() {
         btn_tailar = findViewById(R.id.btn_tailar)
         btn_watchlist = findViewById(R.id.btn_watchlist)
         btn_removelist = findViewById(R.id.btn_removelist)
+
+        setSupportActionBar(toolbar)
+        Objects.requireNonNull(supportActionBar)?.setHomeButtonEnabled(true)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.title = "Movie Details"
+
+        toolbar.setNavigationOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+            startActivity(intent)
+        }
 
         title = intent.getStringExtra("title").toString()
         movieId = intent.getStringExtra("movieId").toString()
@@ -65,6 +83,8 @@ class MovieDetails : AppCompatActivity() {
         description_value.text = description
         movie_genere.text = genre
         movie_release_date.text = releasedDate
+
+
 
         //  imageId.let { image_icon.setImageResource(it) }
 
